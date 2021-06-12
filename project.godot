@@ -38,6 +38,10 @@ window/stretch/aspect="keep"
 
 singletons=[ "res://git_api.gdnlib" ]
 
+[global]
+
+rendering=false
+
 [input]
 
 ui_left={

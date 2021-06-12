@@ -55,3 +55,22 @@ func _process(delta):
 	position += velocity * delta
 	position.x = clamp(position.x, 0, screen_size.x)
 	position.y = clamp(position.y, 0, screen_size.y)
+
+
+func _on_topcollision_top_collision():
+	if velocity.y < 0:
+		velocity.y = 0
+
+
+func _on_bottomcollision_bottom_collision():
+	if velocity.y < 0:
+		velocity.y = 0
+
+
+func _on_leftcollision_left_collision():
+	if velocity.x < 0:
+		velocity.x = 0
+
+func _on_rightcollision_right_collision():
+	if velocity.x > 0:
+		velocity.x = 0
