@@ -4,6 +4,11 @@ var max_y_speed = max_speed / 2
 var max_x_speed = max_speed / 2
 var accelration = 10
 var deceleration = 5
+var top_collision =0
+var bottom_collision =0
+var left_collision =0
+var right_collision =0
+
 var screen_size  # Size of the game window.
 var velocity = Vector2()
 
@@ -22,6 +27,11 @@ func _process(delta):
 		velocity.x += accelration
 		velocity.x = clamp(velocity.x, max_x_speed*-1, max_x_speed)
 		$AnimatedSprite.play("right")
+		if right_collision == 0:
+			velocity.x += accelration
+			velocity.x = clamp(velocity.x, max_x_speed*-1, max_x_speed)
+		else:
+			velocity.x = clamp(velocity.x, max_x_speed*-1, 0)
 	else:
 		if velocity.x > 0:
 			velocity.x -= deceleration
@@ -30,6 +40,11 @@ func _process(delta):
 		velocity.x -= accelration
 		velocity.x = clamp(velocity.x, max_x_speed*-1, max_x_speed)
 		$AnimatedSprite.play("left")
+		if right_collision == 0:
+			velocity.x -= accelration
+			velocity.x = clamp(velocity.x, max_x_speed*-1, max_x_speed)
+		else:
+			velocity.x = clamp(velocity.x, 0, max_x_speed)
 	else:
 		if velocity.x < 0:
 			velocity.x += deceleration
@@ -38,6 +53,11 @@ func _process(delta):
 		velocity.y += accelration
 		velocity.y = clamp(velocity.y, max_y_speed*-1, max_y_speed)
 		$AnimatedSprite.play("down")
+		if bottom_collision == 0:
+			velocity.y += accelration
+			velocity.y = clamp(velocity.y, max_y_speed*-1, max_y_speed)
+		else:
+			velocity.y = clamp(velocity.y, max_y_speed*-1, 0)
 	else:
 		if velocity.y > 0:
 			velocity.y -= deceleration
@@ -62,19 +82,37 @@ func _process(delta):
 
 
 func _on_topcollision_top_collision():
+	top_collision = 1
 	if velocity.y < 0:
 		velocity.y = 0
 
 
 func _on_bottomcollision_bottom_collision():
+	bottom_collision = 1
+	print("bottom start")
 	if velocity.y < 0:
 		velocity.y = 0
 
 
 func _on_leftcollision_left_collision():
+	left_collision = 1
 	if velocity.x < 0:
 		velocity.x = 0
 
 func _on_rightcollision_right_collision():
+	right_collision = 1
 	if velocity.x > 0:
 		velocity.x = 0
+
+func _on_topcollision_top_collision_end():
+	top_collision = 0
+
+func _on_bottomcollision_bottom_collision_end():
+	bottom_collision = 0
+	print("bottom end")
+
+func _on_leftcollision_left_collision_end():
+	left_collision = 0
+
+func _on_rightcollision_right_collision_end():
+	right_collision = 0
