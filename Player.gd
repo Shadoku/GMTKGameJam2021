@@ -21,6 +21,7 @@ func _process(delta):
 	if Input.is_action_pressed("ui_right"):
 		velocity.x += accelration
 		velocity.x = clamp(velocity.x, max_x_speed*-1, max_x_speed)
+		$AnimatedSprite.play("right")
 	else:
 		if velocity.x > 0:
 			velocity.x -= deceleration
@@ -28,6 +29,7 @@ func _process(delta):
 	if Input.is_action_pressed("ui_left"):
 		velocity.x -= accelration
 		velocity.x = clamp(velocity.x, max_x_speed*-1, max_x_speed)
+		$AnimatedSprite.play("left")
 	else:
 		if velocity.x < 0:
 			velocity.x += deceleration
@@ -35,6 +37,7 @@ func _process(delta):
 	if Input.is_action_pressed("ui_down"):
 		velocity.y += accelration
 		velocity.y = clamp(velocity.y, max_y_speed*-1, max_y_speed)
+		$AnimatedSprite.play("down")
 	else:
 		if velocity.y > 0:
 			velocity.y -= deceleration
@@ -42,6 +45,7 @@ func _process(delta):
 	if Input.is_action_pressed("ui_up"):
 		velocity.y -= accelration
 		velocity.y = clamp(velocity.y, max_y_speed*-1, max_y_speed)
+		$AnimatedSprite.play("up")
 	else:
 		if velocity.y < 0:
 			velocity.y += deceleration
