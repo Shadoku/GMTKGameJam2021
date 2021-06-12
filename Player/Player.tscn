@@ -1,11 +1,11 @@
 [gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://sprites/players/idle.png" type="Texture" id=1]
-[ext_resource path="res://Player.gd" type="Script" id=2]
-[ext_resource path="res://topcollision.gd" type="Script" id=3]
-[ext_resource path="res://bottomcollision.gd" type="Script" id=4]
-[ext_resource path="res://leftcollision.gd" type="Script" id=5]
-[ext_resource path="res://rightcollision.gd" type="Script" id=6]
+[ext_resource path="res://Player/bottomcollision.gd" type="Script" id=2]
+[ext_resource path="res://Player/leftcollision.gd" type="Script" id=3]
+[ext_resource path="res://Player/topcollision.gd" type="Script" id=4]
+[ext_resource path="res://Player/Player.gd" type="Script" id=5]
+[ext_resource path="res://Player/rightcollision.gd" type="Script" id=6]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -35,7 +35,7 @@ a = Vector2( -8, -8 )
 b = Vector2( -8, 8 )
 
 [node name="Player" type="Area2D"]
-script = ExtResource( 2 )
+script = ExtResource( 5 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -50,19 +50,19 @@ shape = SubResource( 2 )
 
 [node name="topcollision" type="CollisionShape2D" parent="Top Collision"]
 shape = SubResource( 3 )
-script = ExtResource( 3 )
+script = ExtResource( 4 )
 
 [node name="Bottom Collison" type="Area2D" parent="."]
 
 [node name="bottomcollision" type="CollisionShape2D" parent="Bottom Collison"]
 shape = SubResource( 4 )
-script = ExtResource( 4 )
+script = ExtResource( 2 )
 
 [node name="Left Collision" type="Area2D" parent="."]
 
 [node name="leftcollision" type="CollisionShape2D" parent="Left Collision"]
 shape = SubResource( 5 )
-script = ExtResource( 5 )
+script = ExtResource( 3 )
 
 [node name="Right Collision" type="Area2D" parent="."]
 
@@ -72,10 +72,19 @@ script = ExtResource( 6 )
 
 [connection signal="body_entered" from="." to="." method="_on_Player_body_entered"]
 [connection signal="body_entered" from="Top Collision" to="Top Collision/topcollision" method="_on_Top_Collision_body_entered"]
+[connection signal="body_exited" from="Top Collision" to="Top Collision/topcollision" method="_on_Top_Collision_body_exited"]
 [connection signal="top_collision" from="Top Collision/topcollision" to="." method="_on_topcollision_top_collision"]
+[connection signal="top_collision_end" from="Top Collision/topcollision" to="." method="_on_topcollision_top_collision_end"]
 [connection signal="body_entered" from="Bottom Collison" to="Bottom Collison/bottomcollision" method="_on_Bottom_Collison_body_entered"]
+[connection signal="body_exited" from="Bottom Collison" to="." method="_on_Bottom_Collison_body_exited"]
+[connection signal="body_exited" from="Bottom Collison" to="Bottom Collison/bottomcollision" method="_on_Bottom_Collison_body_exited"]
 [connection signal="bottom_collision" from="Bottom Collison/bottomcollision" to="." method="_on_bottomcollision_bottom_collision"]
+[connection signal="bottom_collision_end" from="Bottom Collison/bottomcollision" to="." method="_on_bottomcollision_bottom_collision_end"]
 [connection signal="body_entered" from="Left Collision" to="Left Collision/leftcollision" method="_on_Area2D3_body_entered"]
+[connection signal="body_exited" from="Left Collision" to="Left Collision/leftcollision" method="_on_Left_Collision_body_exited"]
 [connection signal="left_collision" from="Left Collision/leftcollision" to="." method="_on_leftcollision_left_collision"]
+[connection signal="left_collision_end" from="Left Collision/leftcollision" to="." method="_on_leftcollision_left_collision_end"]
 [connection signal="body_entered" from="Right Collision" to="Right Collision/rightcollision" method="_on_Area2D4_body_entered"]
+[connection signal="body_exited" from="Right Collision" to="Right Collision/rightcollision" method="_on_Right_Collision_body_exited"]
 [connection signal="right_collision" from="Right Collision/rightcollision" to="." method="_on_rightcollision_right_collision"]
+[connection signal="right_collision_end" from="Right Collision/rightcollision" to="." method="_on_rightcollision_right_collision_end"]

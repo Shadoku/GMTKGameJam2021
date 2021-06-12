@@ -1,5 +1,6 @@
 extends CollisionShape2D
-signal right_collision
+signal bottom_collision
+signal bottom_collision_end
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -16,5 +17,9 @@ func _ready():
 #	pass
 
 
-func _on_Area2D4_body_entered(body):
-	emit_signal("right_collision")
+func _on_Bottom_Collison_body_entered(body):
+	emit_signal("bottom_collision")
+
+
+func _on_Bottom_Collison_body_exited(body):
+	emit_signal("bottom_collision_end")
