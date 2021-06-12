@@ -34,7 +34,11 @@ window/stretch/aspect="keep"
 
 [gdnative]
 
+<<<<<<< Updated upstream
 singletons=[ "res://git_api.gdnlib" ]
+=======
+singletons=[  ]
+>>>>>>> Stashed changes
 
 [physics]
 
