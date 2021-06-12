@@ -1,8 +1,8 @@
 [gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://sprites/objects/Torch.png" type="Texture" id=1]
-[ext_resource path="res://Objects/ObjectBase/ColliderEvent.gd" type="Script" id=2]
-[ext_resource path="res://Objects/Torch/ObjectBase.gd" type="Script" id=3]
+[ext_resource path="res://Objects/Torch/ColliderEvent.gd" type="Script" id=2]
+[ext_resource path="res://Objects/Torch/TorchBase.gd" type="Script" id=3]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
@@ -73,7 +73,6 @@ shape = SubResource( 9 )
 
 [connection signal="body_entered" from="." to="." method="_on_Player_body_entered"]
 [connection signal="area_entered" from="Area2D" to="Area2D/CollisionShape2D" method="_on_Area2D_area_entered"]
-[connection signal="body_entered" from="Area2D" to="Area2D/CollisionShape2D" method="_on_Area2D_body_entered"]
-[connection signal="body_exited" from="Area2D" to="Area2D/CollisionShape2D" method="_on_Area2D_body_exited"]
+[connection signal="area_exited" from="Area2D" to="Area2D/CollisionShape2D" method="_on_Area2D_area_exited"]
 [connection signal="torch_collision" from="Area2D/CollisionShape2D" to="." method="_on_CollisionShape2D_torch_collision"]
 [connection signal="torch_collision_end" from="Area2D/CollisionShape2D" to="." method="_on_CollisionShape2D_torch_collision_end"]

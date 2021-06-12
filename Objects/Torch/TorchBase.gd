@@ -16,9 +16,9 @@ func _process(delta):
 
 func _on_CollisionShape2D_torch_collision():
 	object_collision = 1
-	print("torch start")
+	print("torch 1 start")
 
 
 func _on_CollisionShape2D_torch_collision_end():
 	object_collision = 0
-	print("torch end")
+	print("torch 1 end")

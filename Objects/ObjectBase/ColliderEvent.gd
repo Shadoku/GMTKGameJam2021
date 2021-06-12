@@ -1,6 +1,6 @@
 extends CollisionShape2D
-signal torch_collision
-signal torch_collision_end
+signal object_collision
+signal object_collision_end
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,8 +12,8 @@ func _ready():
 #	pass
 
 func _on_Area2D_area_entered(area):
-	emit_signal("torch_collision")
+	emit_signal("object_collision")
 
 
 func _on_Area2D_area_exited(area):
-	emit_signal("torch_collision_end")
+	emit_signal("object_collision_end")
