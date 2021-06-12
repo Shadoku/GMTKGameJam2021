@@ -8,6 +8,7 @@
 
 config_version=4
 
+@@-0,0+1,35@@config_version=4
 _global_script_classes=[ {
 "base": "",
 "class": "GitAPI",
@@ -34,11 +35,7 @@ window/stretch/aspect="keep"
 
 [gdnative]
 
-<<<<<<< Updated upstream
 singletons=[ "res://git_api.gdnlib" ]
-=======
-singletons=[  ]
->>>>>>> Stashed changes
 
 [physics]
 
