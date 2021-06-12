@@ -22,7 +22,7 @@ _global_script_class_icons={
 [application]
 
 config/name="GamJam"
-run/main_scene="res://Player/Player.tscn"
+run/main_scene="res://GameScenes/Test.tscn"
 config/icon="res://icon.png"
 
 [display]

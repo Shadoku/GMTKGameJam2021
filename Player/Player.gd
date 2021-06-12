@@ -34,7 +34,7 @@ func _process(delta):
 			velocity.x -= deceleration
 			velocity.x = clamp(velocity.x, 0, max_x_speed)
 	if Input.is_action_pressed("ui_left"):
-		if right_collision == 0:
+		if left_collision == 0:
 			velocity.x -= accelration
 			velocity.x = clamp(velocity.x, max_x_speed*-1, max_x_speed)
 		else:
@@ -54,12 +54,15 @@ func _process(delta):
 			velocity.y -= deceleration
 			velocity.y = clamp(velocity.y, 0, max_y_speed)
 	if Input.is_action_pressed("ui_up"):
-		velocity.y -= accelration
-		velocity.y = clamp(velocity.y, max_y_speed*-1, max_y_speed)
+		if top_collision == 0:
+			velocity.y -= accelration
+			velocity.y = clamp(velocity.y, max_y_speed*-1, max_y_speed)
+		else:
+			velocity.y = clamp(velocity.y, 0, max_y_speed)
 	else:
 		if velocity.y < 0:
 			velocity.y += deceleration
-			velocity.y = clamp(velocity.y, max_y_speed*-1, 0)
+			velocity.y = clamp(velocity.y, 0, max_y_speed*-1)
 	if velocity.length() > 0:
 		#velocity = velocity.normalized() * max_speed
 		$AnimatedSprite.play()
@@ -73,6 +76,7 @@ func _process(delta):
 
 func _on_topcollision_top_collision():
 	top_collision = 1
+	print("rip end")
 	if velocity.y < 0:
 		velocity.y = 0
 
@@ -96,10 +100,11 @@ func _on_rightcollision_right_collision():
 
 func _on_topcollision_top_collision_end():
 	top_collision = 0
+	
 
 func _on_bottomcollision_bottom_collision_end():
 	bottom_collision = 0
-	print("bottom end")
+	
 
 func _on_leftcollision_left_collision_end():
 	left_collision = 0

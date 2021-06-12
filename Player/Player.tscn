@@ -61,12 +61,14 @@ script = ExtResource( 2 )
 [node name="Left Collision" type="Area2D" parent="."]
 
 [node name="leftcollision" type="CollisionShape2D" parent="Left Collision"]
+rotation = 3.14159
 shape = SubResource( 5 )
 script = ExtResource( 3 )
 
 [node name="Right Collision" type="Area2D" parent="."]
 
 [node name="rightcollision" type="CollisionShape2D" parent="Right Collision"]
+rotation = -3.14159
 shape = SubResource( 6 )
 script = ExtResource( 6 )
 
