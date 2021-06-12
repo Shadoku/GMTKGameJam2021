@@ -80,14 +80,12 @@ func _process(delta):
 
 func _on_topcollision_top_collision():
 	top_collision = 1
-	print("rip end")
 	if velocity.y < 0:
 		velocity.y = 0
 
 
 func _on_bottomcollision_bottom_collision():
 	bottom_collision = 1
-	print("bottom start")
 	if velocity.y < 0:
 		velocity.y = 0
 
