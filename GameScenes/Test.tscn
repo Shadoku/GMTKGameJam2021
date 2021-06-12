@@ -1,29 +1,44 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://sprites/tileset/EvilWalls.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Objects/ObjectBase/ObjectBase.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Objects/Torch/ObjectBase.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Objects/ZappyLine/Zappline.tscn" type="PackedScene" id=4]
 
 [node name="Node2D" type="Node2D"]
-position = Vector2( -114.035, -15.1453 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 137.144, 93.4387 )
+position = Vector2( 120, 120 )
 z_index = 1
 priority = 6.0
 
-[node name="ObjectBase" parent="." instance=ExtResource( 4 )]
-position = Vector2( 177.93, 118.287 )
-z_index = 1
-
-[node name="ObjectBase" parent="ObjectBase" instance=ExtResource( 4 )]
-position = Vector2( 233.091, -34.023 )
-
 [node name="Node2D" parent="." instance=ExtResource( 2 )]
-position = Vector2( -68.0596, -66.0526 )
 
 [node name="Node2D2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 219.159, -66.1794 )
+position = Vector2( 288, 0 )
 
 [node name="Player2" parent="." instance=ExtResource( 1 )]
-position = Vector2( 370.662, 133.529 )
+position = Vector2( 408, 120 )
+
+[node name="ObjectBase" parent="." instance=ExtResource( 3 )]
+position = Vector2( 152, 152 )
+
+[node name="ObjectBase2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 440, 152 )
+
+[node name="ZappyLine" type="Node2D" parent="."]
+position = Vector2( 288, 0 )
+
+[node name="1" parent="ZappyLine" instance=ExtResource( 4 )]
+
+[node name="2" parent="ZappyLine" instance=ExtResource( 4 )]
+position = Vector2( 0, 64 )
+
+[node name="3" parent="ZappyLine" instance=ExtResource( 4 )]
+position = Vector2( 0, 128 )
+
+[node name="4" parent="ZappyLine" instance=ExtResource( 4 )]
+position = Vector2( 0, 192 )
+
+[node name="5" parent="ZappyLine" instance=ExtResource( 4 )]
+position = Vector2( 0, 256 )
