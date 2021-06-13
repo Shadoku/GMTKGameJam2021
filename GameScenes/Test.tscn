@@ -22,7 +22,7 @@ position = Vector2( 288, 0 )
 position = Vector2( 408, 120 )
 
 [node name="ObjectBase" parent="." instance=ExtResource( 3 )]
-position = Vector2( 152, 152 )
+position = Vector2( 112, 160 )
 
 [node name="ObjectBase2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 440, 152 )
@@ -45,4 +45,4 @@ position = Vector2( 0, 192 )
 position = Vector2( 0, 256 )
 
 [node name="ObjectBase3" parent="." instance=ExtResource( 5 )]
-position = Vector2( 136, 136 )
+position = Vector2( 81, 152 )

@@ -1,48 +1,61 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://sprites/tileset/Image15.png" type="Texture" id=1]
+[ext_resource path="res://sprites/objects/block.png" type="Texture" id=1]
 [ext_resource path="res://Objects/ObjectBase/ColliderEvent.gd" type="Script" id=2]
 [ext_resource path="res://Objects/Block/ObjectBase.gd" type="Script" id=3]
 
-[sub_resource type="AtlasTexture" id=1]
+[sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 1 )
-region = Rect2( 192, 32, 16, 16 )
+region = Rect2( 0, 0, 16, 16 )
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ SubResource( 1 ) ],
-"loop": true,
-"name": "left",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 1 ) ],
+"frames": [ SubResource( 5 ) ],
 "loop": true,
 "name": "right",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 1 ) ],
+"frames": [ SubResource( 5 ) ],
+"loop": true,
+"name": "left",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 5 ) ],
 "loop": true,
 "name": "up",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 1 ) ],
+"frames": [ SubResource( 5 ) ],
 "loop": true,
 "name": "down",
 "speed": 5.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 8.92794, 9.23124 )
+extents = Vector2( 8, 8 )
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 7.93581, 8.13991 )
+extents = Vector2( 8, 8 )
+
+[sub_resource type="SegmentShape2D" id=6]
+a = Vector2( 8, 7 )
+b = Vector2( 8, -7 )
+
+[sub_resource type="SegmentShape2D" id=7]
+a = Vector2( -8, 7 )
+b = Vector2( -8, -7 )
+
+[sub_resource type="SegmentShape2D" id=8]
+a = Vector2( -7, -8 )
+b = Vector2( 7, -8 )
+
+[sub_resource type="SegmentShape2D" id=9]
+a = Vector2( -7, 8 )
+b = Vector2( 7, 8 )
 
 [node name="ObjectBase" type="Area2D"]
 position = Vector2( 0.0992126, 0 )
 script = ExtResource( 3 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="Animations" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
@@ -57,14 +70,45 @@ shape = SubResource( 3 )
 script = ExtResource( 2 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource( 4 )
 
+[node name="RightColider" type="Area2D" parent="."]
+
+[node name="RightColiderSensor" type="CollisionShape2D" parent="RightColider"]
+shape = SubResource( 6 )
+
+[node name="LeftColider2" type="Area2D" parent="."]
+
+[node name="LeftColiderSensor" type="CollisionShape2D" parent="LeftColider2"]
+shape = SubResource( 7 )
+
+[node name="UpColider3" type="Area2D" parent="."]
+
+[node name="UpColiderSensor" type="CollisionShape2D" parent="UpColider3"]
+shape = SubResource( 8 )
+
+[node name="DownColider4" type="Area2D" parent="."]
+
+[node name="DownColiderSensor" type="CollisionShape2D" parent="DownColider4"]
+shape = SubResource( 9 )
+
 [connection signal="body_entered" from="." to="." method="_on_Player_body_entered"]
 [connection signal="area_entered" from="Area2D" to="Area2D/CollisionShape2D" method="_on_Area2D_area_entered"]
 [connection signal="area_exited" from="Area2D" to="Area2D/CollisionShape2D" method="_on_Area2D_area_exited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="Area2D" to="Area2D/CollisionShape2D" method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="Area2D/CollisionShape2D" method="_on_Area2D_body_exited"]
 [connection signal="object_collision" from="Area2D/CollisionShape2D" to="." method="_on_CollisionShape2D_object_collision"]
 [connection signal="object_collision_end" from="Area2D/CollisionShape2D" to="." method="_on_CollisionShape2D_object_collision_end"]
+[connection signal="body_entered" from="RightColider" to="." method="_on_RightColider_body_entered"]
+[connection signal="body_exited" from="RightColider" to="." method="_on_RightColider_body_exited"]
+[connection signal="body_entered" from="LeftColider2" to="." method="_on_LeftColider2_body_entered"]
+[connection signal="body_exited" from="LeftColider2" to="." method="_on_LeftColider2_body_exited"]
+[connection signal="body_entered" from="UpColider3" to="." method="_on_UpColider3_body_entered"]
+[connection signal="body_exited" from="UpColider3" to="." method="_on_UpColider3_body_exited"]
+[connection signal="body_entered" from="DownColider4" to="." method="_on_DownColider4_body_entered"]
+[connection signal="body_exited" from="DownColider4" to="." method="_on_DownColider4_body_exited"]

@@ -29,6 +29,7 @@ config/icon="res://icon.png"
 
 EventController="*res://Controllers/EventController.gd"
 GameController="*res://Controllers/gameController.gd"
+PlayerController="*res://Controllers/PlayerController.gd"
 
 [display]
 
