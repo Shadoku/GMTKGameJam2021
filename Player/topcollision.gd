@@ -19,6 +19,8 @@ func _ready():
 
 
 func _on_Top_Collision_body_entered(body):
+	EventController.emit_signal("push", body.get_parent(), "up")
+	print(body.get_parent())
 	emit_signal("top_collision")
 
 

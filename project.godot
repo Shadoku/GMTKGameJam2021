@@ -25,6 +25,10 @@ config/name="GamJam"
 run/main_scene="res://GameScenes/Test.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+EventController="*res://Controllers/EventController.gd"
+
 [display]
 
 window/size/width=576
