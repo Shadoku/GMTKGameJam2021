@@ -23,4 +23,5 @@ func _on_Bottom_Collison_body_entered(body):
 
 
 func _on_Bottom_Collison_body_exited(body):
+	EventController.emit_signal("push_end", body.get_parent(), "down")
 	emit_signal("bottom_collision_end")

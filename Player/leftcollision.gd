@@ -23,4 +23,5 @@ func _on_Area2D3_body_entered(body):
 
 
 func _on_Left_Collision_body_exited(body):
+	EventController.emit_signal("push_end", body.get_parent(), "left")
 	emit_signal("left_collision_end")

@@ -9,7 +9,7 @@
 [node name="Node2D" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 120, 120 )
+position = Vector2( 81, 183.067 )
 z_index = 1
 priority = 6.0
 
@@ -45,4 +45,4 @@ position = Vector2( 0, 192 )
 position = Vector2( 0, 256 )
 
 [node name="ObjectBase3" parent="." instance=ExtResource( 5 )]
-position = Vector2( 81, 152 )
+position = Vector2( 81, 206.658 )

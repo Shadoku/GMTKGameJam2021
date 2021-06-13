@@ -25,4 +25,5 @@ func _on_Top_Collision_body_entered(body):
 
 
 func _on_Top_Collision_body_exited(body):
+	EventController.emit_signal("push_end", body.get_parent(), "up")
 	emit_signal("top_collision_end")

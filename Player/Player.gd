@@ -8,6 +8,8 @@ var top_collision =0
 var bottom_collision =0
 var left_collision =0
 var right_collision =0
+#Player input array: [up, down, left, right, interact]
+var player_input = [0,0,0,0,0]
 
 var screen_size  # Size of the game window.
 var velocity = Vector2()
@@ -19,9 +21,14 @@ signal interact
 
 # Called when the node enters the scene tree for the first time.
 
+func get_input():
+	player_input = [Input.is_action_pressed("ui_up"),Input.is_action_pressed("ui_down"),Input.is_action_pressed("ui_left"),Input.is_action_pressed("ui_right"),Input.is_action_pressed("ui_accept")]
+	PlayerController.emit_signal("player_input", player_input)
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	get_input()
 	#Detect insput and set speed
 	  # The player's movement vector.
 	if Input.is_action_pressed("ui_right"):
@@ -69,8 +76,10 @@ func _process(delta):
 			velocity.y += deceleration
 			velocity.y = clamp(velocity.y, 0, max_y_speed*-1)
 			
-	if Input.is_action_pressed("ui_left"):
-		emit_signal("interact")
+	#if Input.is_action_pressed("ui_left"):
+		#emit_signal("interact")
+		
+	PlayerController.emit_signal("player_velocity", velocity)
 	
 #Update position
 	position += velocity * delta
