@@ -18,6 +18,7 @@ func _ready():
 
 
 func _on_Bottom_Collison_body_entered(body):
+	EventController.emit_signal("push", body.get_parent(), "down")
 	emit_signal("bottom_collision")
 
 
