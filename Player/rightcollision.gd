@@ -18,6 +18,7 @@ func _ready():
 
 
 func _on_Area2D4_body_entered(body):
+	EventController.emit_signal("push", body.get_parent(), "right")
 	emit_signal("right_collision")
 
 
