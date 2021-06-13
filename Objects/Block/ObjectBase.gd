@@ -5,7 +5,7 @@ var ymov = 0
 var mov_distance = 16
 var mov_lock = [0, 0, 0, 0]
 var push_direction = [0, 0, 0, 0]
-var mov_delay = 15
+var mov_delay = 25
 var current_delay = 0
 var player_coliders = PlayerController.coliders
 var player_velocity = Vector2()
@@ -58,7 +58,7 @@ func _process(delta):
 	#push down
 	#print(push_direction)
 	if push_direction[0] == 1 && player_input[0] == true && mov_lock[0] == 0:
-			print("we're pushing up!")
+#			print("we're pushing up!")
 			current_delay += 1
 			if current_delay == mov_delay:
 				ymov = mov_distance*-1
@@ -66,7 +66,7 @@ func _process(delta):
 				
 	#push up
 	if push_direction[1] == 1 && player_input[1] == true && mov_lock[1] == 0:
-			print("we're pushing down!")
+#			print("we're pushing down!")
 			current_delay += 1
 			if current_delay == mov_delay:
 				ymov = mov_distance
@@ -74,7 +74,7 @@ func _process(delta):
 				
 	#push up
 	if push_direction[2] == 1 && player_input[2] == true && mov_lock[2] == 0:
-			print("we're pushing left!")
+#			print("we're pushing left!")
 			current_delay += 1
 			if current_delay == mov_delay:
 				xmov = mov_distance*-1
@@ -82,26 +82,22 @@ func _process(delta):
 				
 	#push up
 	if push_direction[3] == 1 && player_input[3] == true && mov_lock[3] == 0:
-			print("we're pushing right!")
+#			print("we're pushing right!")
 			current_delay += 1
 			if current_delay == mov_delay:
 				xmov = mov_distance
 				current_delay = 0
-				
-#	for key in player_coliders:
-#		var colider = PlayerController.coliders[key]
-#		#print(colider)
-#		if overlaps_area(colider):
-#			print("Overlaps")
-#			#if direction == "up" && ymov == 0 && xmov == 0 && mov_lock[0] == 0:
-#			current_delay += 1
-#			print("Added to delay up")
-#			if current_delay >= mov_delay:
-#				print("pushed up")
-#				#position.y -= 16
-#				ymov = -16
-				
 
+####################PULLING##########################
+				
+		#pull down
+	#print(push_direction)
+	if push_direction[0] == 1 && player_input[0] == true && mov_lock[0] == 0:
+			#print("we're pushing up!")
+			current_delay += 1
+			if current_delay == mov_delay:
+				ymov = mov_distance*-1
+				current_delay = 0
 	
 func push(object, direction):
 	if object == self:

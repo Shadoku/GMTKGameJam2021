@@ -4,12 +4,16 @@ var max_y_speed = max_speed / 2
 var max_x_speed = max_speed / 2
 var accelration = 10
 var deceleration = 5
+var player_collisions = [0,0,0,0]
+var player_direction = 0
 var top_collision =0
 var bottom_collision =0
 var left_collision =0
 var right_collision =0
 #Player input array: [up, down, left, right, interact]
 var player_input = [0,0,0,0,0]
+var locked_input_state = [0,0,0,0,0]
+var interact_lock = 0
 
 var screen_size  # Size of the game window.
 var velocity = Vector2()
@@ -29,10 +33,32 @@ func get_input():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	get_input()
-	#Detect insput and set speed
-	  # The player's movement vector.
-	if Input.is_action_pressed("ui_right"):
+	
+####Clean up this mess later, entire script should be converted to used input and collision arrays
+
+	player_collisions = [top_collision, bottom_collision, left_collision, right_collision]
+	
+###############Prevent player from moving if interacting with tile############
+	#print(player_input)
+	if interact_lock == 0:
+		if player_collisions[player_direction] && player_input[4]:
+			print("locking input")
+			locked_input_state = [0,0,0,0,1]
+			interact_lock = 1
+		else:
+			locked_input_state = player_input
+			#print(locked_input_state)
+	else:
+		if player_input[4]:
+			locked_input_state = [0,0,0,0,1]
+		else:
+			interact_lock = 0
+			locked_input_state = player_input
+			
+		
+	if locked_input_state[3]:
 		$AnimatedSprite.play("right")
+		player_direction = 3
 		if right_collision == 0:
 			velocity.x += accelration
 			velocity.x = clamp(velocity.x, max_x_speed*-1, max_x_speed)
@@ -42,7 +68,8 @@ func _process(delta):
 		if velocity.x > 0:
 			velocity.x -= deceleration
 			velocity.x = clamp(velocity.x, 0, max_x_speed)
-	if Input.is_action_pressed("ui_left"):
+	if locked_input_state[2]:
+		player_direction = 2
 		$AnimatedSprite.play("left")
 		if left_collision == 0:
 			velocity.x -= accelration
@@ -53,7 +80,8 @@ func _process(delta):
 		if velocity.x < 0:
 			velocity.x += deceleration
 			velocity.x = clamp(velocity.x, max_x_speed*-1, 0)
-	if Input.is_action_pressed("ui_down"):
+	if locked_input_state[1]:
+		player_direction = 1
 		$AnimatedSprite.play("down")
 		if bottom_collision == 0:
 			velocity.y += accelration
@@ -64,7 +92,8 @@ func _process(delta):
 		if velocity.y > 0:
 			velocity.y -= deceleration
 			velocity.y = clamp(velocity.y, 0, max_y_speed)
-	if Input.is_action_pressed("ui_up"):
+	if locked_input_state[0]:
+		player_direction = 0
 		$AnimatedSprite.play("up")
 		if top_collision == 0:
 			velocity.y -= accelration
@@ -94,6 +123,7 @@ func _on_topcollision_top_collision():
 
 
 func _on_bottomcollision_bottom_collision():
+	print("bottom collision")
 	bottom_collision = 1
 	if velocity.y < 0:
 		velocity.y = 0
@@ -114,6 +144,7 @@ func _on_topcollision_top_collision_end():
 	
 
 func _on_bottomcollision_bottom_collision_end():
+	print("bottom collision ended")
 	bottom_collision = 0
 	
 
