@@ -17,17 +17,25 @@ var interact_lock = 0
 
 var screen_size  # Size of the game window.
 var velocity = Vector2()
+var add_velocity = Vector2()
 
 #signals
 signal interact
 
 #hello world 
 
+
 # Called when the node enters the scene tree for the first time.
+
+func _ready():
+	EventController.connect("move_player", self, "move_player")
 
 func get_input():
 	player_input = [Input.is_action_pressed("ui_up"),Input.is_action_pressed("ui_down"),Input.is_action_pressed("ui_left"),Input.is_action_pressed("ui_right"),Input.is_action_pressed("ui_accept")]
 	PlayerController.emit_signal("player_input", player_input)
+	
+func move_player(direction):
+	add_velocity = direction
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -51,6 +59,19 @@ func _process(delta):
 	else:
 		if player_input[4]:
 			locked_input_state = [0,0,0,0,1]
+			
+			if player_direction == 0 && player_input[1]:
+				EventController.emit_signal("pull", "down")
+				
+			if player_direction == 1 && player_input[0]:
+				EventController.emit_signal("pull", "up")
+				
+			if player_direction == 2 && player_input[3]:
+				EventController.emit_signal("pull", "right")
+				
+			if player_direction == 3 && player_input[2]:
+				EventController.emit_signal("pull", "left")
+				
 		else:
 			interact_lock = 0
 			locked_input_state = player_input

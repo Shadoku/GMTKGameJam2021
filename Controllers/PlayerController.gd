@@ -3,6 +3,7 @@ extends Node
 
 signal player_velocity(velocity)
 signal player_input(input)
+signal move_player(xyvector)
 export var coliders = {"up":[], "down":[], "left":[], "right":[]}
 var player_velocity = Vector2()
 
