@@ -1,5 +1,5 @@
 extends Area2D
-export var max_speed = 48  # How fast the player will move (pixels/sec).
+export var max_speed = 42  # How fast the player will move (pixels/frame).
 var max_y_speed = max_speed / 2
 var max_x_speed = max_speed / 2
 var accelration = 10
@@ -14,6 +14,7 @@ var right_collision =0
 var player_input = [0,0,0,0,0]
 var locked_input_state = [0,0,0,0,0]
 var interact_lock = 0
+var interact_lock_direction = 0
 
 var screen_size  # Size of the game window.
 var velocity = Vector2()
@@ -28,13 +29,14 @@ signal interact
 # Called when the node enters the scene tree for the first time.
 
 func _ready():
-	EventController.connect("move_player", self, "move_player")
+	PlayerController.connect("move_player", self, "move_player")
 
 func get_input():
 	player_input = [Input.is_action_pressed("ui_up"),Input.is_action_pressed("ui_down"),Input.is_action_pressed("ui_left"),Input.is_action_pressed("ui_right"),Input.is_action_pressed("ui_accept")]
 	PlayerController.emit_signal("player_input", player_input)
 	
 func move_player(direction):
+	print("move player")
 	add_velocity = direction
 	
 
@@ -132,9 +134,20 @@ func _process(delta):
 	PlayerController.emit_signal("player_velocity", velocity)
 	
 #Update position
-	position += velocity * delta
-	#position.x = clamp(position.x, 0, screen_size.x)
-	#position.y = clamp(position.y, 0, screen_size.y)
+	position += (velocity + add_velocity) * delta
+	
+#Decelerate additional velocity component
+	if add_velocity.x > 0:
+		add_velocity.x -+ 1
+		
+	if add_velocity.x < 0:
+		add_velocity.x += 1
+		
+	if add_velocity.y > 0:
+		add_velocity.y -= 1
+		
+	if add_velocity.y < 0:
+		add_velocity.y += 1
 
 
 func _on_topcollision_top_collision():

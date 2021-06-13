@@ -98,7 +98,37 @@ func _process(delta):
 			if current_delay == mov_delay:
 				ymov = mov_distance
 				current_delay = 0
-				PlayerController.emit_signal("move_player", Vector2(0,16))
+				PlayerController.emit_signal("move_player", Vector2(0,48))
+				
+		#pull up
+	#print(push_direction)
+	if push_direction[1] == 1 && player_input[0] == true && player_input[4]:
+			#print("we're pushing up!")
+			current_delay += 1
+			if current_delay == mov_delay:
+				ymov = mov_distance*-1
+				current_delay = 0
+				PlayerController.emit_signal("move_player", Vector2(0,-48))
+				
+		#pull right
+	#print(push_direction)
+	if push_direction[2] == 1 && player_input[3] == true && player_input[4]:
+			#print("we're pushing up!")
+			current_delay += 1
+			if current_delay == mov_delay:
+				xmov = mov_distance
+				current_delay = 0
+				PlayerController.emit_signal("move_player", Vector2(48,0))
+				
+		#pull left
+	#print(push_direction)
+	if push_direction[3] == 1 && player_input[2] == true && player_input[4]:
+			#print("we're pushing up!")
+			current_delay += 1
+			if current_delay == mov_delay:
+				xmov = mov_distance*-1
+				current_delay = 0
+				PlayerController.emit_signal("move_player", Vector2(-48,0))
 	
 func push(object, direction):
 	if object == self:

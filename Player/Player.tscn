@@ -70,20 +70,20 @@ animations = [ {
 extents = Vector2( 8, 8 )
 
 [sub_resource type="SegmentShape2D" id=11]
-a = Vector2( 7, -12 )
-b = Vector2( -7, -12 )
+a = Vector2( 7, -9 )
+b = Vector2( -7, -9 )
 
 [sub_resource type="SegmentShape2D" id=12]
-a = Vector2( -7, 8 )
-b = Vector2( 7, 8 )
+a = Vector2( -7, 9 )
+b = Vector2( 7, 9 )
 
 [sub_resource type="SegmentShape2D" id=13]
-a = Vector2( 8, -7 )
-b = Vector2( 8, 7 )
+a = Vector2( 9, -7 )
+b = Vector2( 9, 7 )
 
 [sub_resource type="SegmentShape2D" id=14]
-a = Vector2( -8, -7 )
-b = Vector2( -8, 7 )
+a = Vector2( -9, -7 )
+b = Vector2( -9, 7 )
 
 [node name="Player" type="Area2D"]
 position = Vector2( 7, 7 )
