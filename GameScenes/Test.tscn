@@ -45,4 +45,4 @@ position = Vector2( 0, 192 )
 position = Vector2( 0, 256 )
 
 [node name="ObjectBase3" parent="." instance=ExtResource( 5 )]
-position = Vector2( 176.099, 113 )
+position = Vector2( 136, 136 )

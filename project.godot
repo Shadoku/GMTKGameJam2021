@@ -28,6 +28,7 @@ config/icon="res://icon.png"
 [autoload]
 
 EventController="*res://Controllers/EventController.gd"
+GameController="*res://Controllers/gameController.gd"
 
 [display]
 
