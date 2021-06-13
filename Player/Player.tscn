@@ -9,19 +9,19 @@
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
-region = Rect2( 48, 0, 16, 16 )
+region = Rect2( 32, 0, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 1 )
-region = Rect2( 48, 16, 16, 16 )
+region = Rect2( 32, 16, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 1 )
-region = Rect2( 32, 0, 16, 16 )
+region = Rect2( 48, 0, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 1 )
-region = Rect2( 32, 16, 16, 16 )
+region = Rect2( 48, 16, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 1 )
@@ -43,12 +43,12 @@ region = Rect2( 16, 0, 16, 16 )
 animations = [ {
 "frames": [ SubResource( 1 ), SubResource( 2 ) ],
 "loop": true,
-"name": "right",
+"name": "left",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 3 ), SubResource( 4 ) ],
 "loop": true,
-"name": "left",
+"name": "right",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 5 ), SubResource( 6 ) ],
@@ -137,8 +137,8 @@ script = ExtResource( 6 )
 [connection signal="top_collision" from="Top Collision/topcollision" to="." method="_on_topcollision_top_collision"]
 [connection signal="top_collision_end" from="Top Collision/topcollision" to="." method="_on_topcollision_top_collision_end"]
 [connection signal="body_entered" from="Bottom Collison" to="Bottom Collison/bottomcollision" method="_on_Bottom_Collison_body_entered"]
-[connection signal="body_exited" from="Bottom Collison" to="Bottom Collison/bottomcollision" method="_on_Bottom_Collison_body_exited"]
 [connection signal="body_exited" from="Bottom Collison" to="." method="_on_Bottom_Collison_body_exited"]
+[connection signal="body_exited" from="Bottom Collison" to="Bottom Collison/bottomcollision" method="_on_Bottom_Collison_body_exited"]
 [connection signal="bottom_collision" from="Bottom Collison/bottomcollision" to="." method="_on_bottomcollision_bottom_collision"]
 [connection signal="bottom_collision_end" from="Bottom Collison/bottomcollision" to="." method="_on_bottomcollision_bottom_collision_end"]
 [connection signal="body_entered" from="Left Collision" to="Left Collision/leftcollision" method="_on_Area2D3_body_entered"]
