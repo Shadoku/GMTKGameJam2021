@@ -40,6 +40,10 @@ window/per_pixel_transparency/enabled=true
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/vnen.tiled_importer/plugin.cfg" )
+
 [gdnative]
 
 singletons=[ "res://git_api.gdnlib" ]
@@ -103,3 +107,7 @@ quality/reflections/texture_array_reflections=false
 quality/depth_prepass/enable=false
 quality/lightmapping/use_bicubic_sampling=false
 environment/default_environment="res://default_env.tres"
+
+[tiled_importer]
+
+enable_json_format=true
